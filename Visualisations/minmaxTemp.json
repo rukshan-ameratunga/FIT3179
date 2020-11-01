@@ -1,0 +1,178 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": "container",
+  "height": 250,
+  "title": "Temperature change over time",
+  "data": {
+    "url": "https://raw.githubusercontent.com/rukshan-ameratunga/FIT3179/main/data/cleanedWeatherStates.csv"
+  },
+    "params": [
+        {
+            "name": "Year",
+            "value": 2010,
+            "bind": {
+                "input": "range",
+                "min": 2010,
+                "max": 2016,
+                "step": 1,
+                "name": "Select year: "
+            }
+        },
+    {
+      "name": "State_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "ACT",
+          "NSW",
+          "NT",
+          "QLD",
+          "SA",
+          "TAS",
+          "VIC",
+          "WA"
+        ],
+        "labels": [
+          "Show All",
+          "ACT",
+          "NSW",
+          "NT",
+          "QLD",
+          "SA",
+          "TAS",
+          "VIC",
+          "WA"
+        ],
+        "name": "State Selection: "
+      }
+    }
+    ],
+    "transform": [
+        {
+            "filter": "datum.Year==Year"
+        },
+        {
+        "filter": "State_selection == null || datum.State == State_selection"
+        }
+    ],
+    "layer": [
+        {
+            "mark": "point",
+            "encoding": {
+                "y": {
+                "field": "MaxTemp",
+                "type": "quantitative",
+                "title": "Temperature (°C)"
+                },
+                "x": {
+                "field": "Month",
+                "type": "temporal",
+                "title": "Month"
+                },
+                "color": {
+                "field": "State",
+                "type": "nominal",
+                "scale": {
+                    "domain": [
+                    "ACT",
+                    "NSW",
+                    "NT",
+                    "QLD",
+                    "SA",
+                    "TAS",
+                    "VIC",
+                    "WA"
+                    ]
+                }
+            },
+            "tooltip": [
+                {
+                    "field": "State",
+                    "type": "nominal",
+                    "title": "State"
+                },
+                {
+                    "field": "MaxTemp",
+                    "type": "quantitative",
+                    "title": "Max. Temp."
+                },
+                {
+                    "field": "Year",
+                    "type": "quantitative"
+                }
+            ],
+            "size": {
+            "value": 50
+            },
+            "opacity": {
+            "value": 1
+            }
+            }  
+        },
+        {
+            "mark": "point",
+            "encoding": {
+                "y": {
+                "field": "MinTemp",
+                "type": "quantitative",
+                "title": "Temperature (°C)"
+                },
+                "x": {
+                "field": "Month",
+                "type": "temporal",
+                "title": "Month"
+                },
+                "color": {
+                "field": "State",
+                "type": "nominal"
+                },
+            "tooltip": [
+                {
+                    "field": "State",
+                    "type": "nominal",
+                    "title": "State"
+                },
+                {
+                    "field": "MinTemp",
+                    "type": "quantitative",
+                    "title": "Min. Temp."
+                },
+                {
+                    "field": "Year",
+                    "type": "quantitative"
+                }
+            ],
+            "size": {
+            "value": 30
+            },
+            "opacity": {
+            "value": 1
+            }
+            }
+        }
+    ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "legend": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "header": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "title": {
+      "font": "Oxygen",
+      "fontSize": 16,
+      "fontWeight": 600
+    }
+  }
+    
+}
