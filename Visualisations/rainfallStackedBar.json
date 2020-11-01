@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "width": "container",
+    "height": "container",
+    "title": "Rainfall across Australia",
+  "data": {"url": "https://raw.githubusercontent.com/rukshan-ameratunga/FIT3179/main/data/cleanedWeatherStates.csv"},
+    "params": [
+        {
+            "name": "Year",
+            "value": 2009,
+            "bind": {
+                "input": "range",
+                "min": 2009,
+                "max": 2016,
+                "step": 1,
+                "name": "Select year: "
+            }
+        }
+    ],
+    "transform": [
+        {
+            "filter": "datum.Year==Year"
+        }
+    ],
+  "encoding": {
+    "x": {
+      "timeUnit": "month",
+      "field": "Month",
+      "type": "ordinal",
+      "title": "Month"
+    },
+    "y": {
+      "field": "Rainfall",
+      "type": "quantitative",
+      "title": "Rainfall (mm)"
+    },
+        "color": {
+            "condition": {
+                "selection": "hover",
+                "field": "State",
+                "type": "nominal",
+                "legend": { "title": "State" }
+            },
+            "value": "grey"
+        },
+        "opacity": {
+            "condition": {
+                "selection": "hover",
+                "value": 1
+            },
+            "value": 0.2
+        }
+  },
+    "layer": [
+        {
+            "description": "transparent layer to make it easier to trigger selection",
+            "selection": {
+                "hover": {
+                    "type": "single",
+                    "on": "mouseover",
+                    "empty": "all",
+                    "fields": [
+                        "State"
+                    ]
+                }
+            },
+            "mark": {
+                "type": "bar",
+                "point": true,
+                "strokeWidth": 8,
+                "stroke": "transparent"
+            },
+            "encoding": {
+                "tooltip": [
+                    {
+                        "field": "Rainfall",
+                        "type": "quantitative",
+                        "title": "Rainfall"
+                    },
+                    {
+                        "field": "Month",
+                        "type": "temporal",
+                        "timeUnit": "month",
+                        "title": "Month"
+                    },
+                    {
+                        "field": "Rainfall",
+                        "type": "nominal"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": "bar"
+        }
+    ],
+"config": {
+        "view": {
+            "stroke": null
+        },
+        "axis": {
+            "labelFont": "Oxygen",
+            "titleFont": "Oxygen"
+        },
+        "legend": {
+            "labelFont": "Oxygen",
+            "titleFont": "Oxygen"
+        },
+        "header": {
+            "labelFont": "Oxygen",
+            "titleFont": "Oxygen"
+        },
+        "title": {
+            "font": "Oxygen",
+            "fontSize": 16,
+            "fontWeight": 600
+        }
+    }
+}
