@@ -174,15 +174,15 @@
     var specViz2 = "./Visualisations/minmaxTemp.json";
     var specViz3 = "./Visualisations/rainfallStackedBar.json";
 
-    vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
+    vegaEmbed('#vis1', specViz1, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 
-    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+    vegaEmbed('#vis2', specViz2, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 
-    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+    vegaEmbed('#vis3', specViz3, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
   </script>
