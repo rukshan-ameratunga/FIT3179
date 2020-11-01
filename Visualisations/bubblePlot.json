@@ -1,0 +1,139 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": "container",
+  "height": 250,
+  "title": "Effect of Temperature on Humidity",
+  "data": {
+    "url": "https://raw.githubusercontent.com/rukshan-ameratunga/FIT3179/main/data/cleanedWeatherStates.csv"},
+  "params": [
+    {
+      "name": "Rainfall_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 21.7,
+        "step": 1,
+        "name": "Minimum Rainfall: "
+      }
+    },
+    {
+      "name": "State_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "ACT",
+          "NSW",
+          "NT",
+          "QLD",
+          "SA",
+          "TAS",
+          "VIC",
+          "WA"
+        ],
+        "labels": [
+          "Show All",
+          "ACT",
+          "NSW",
+          "NT",
+          "QLD",
+          "SA",
+          "TAS",
+          "VIC",
+          "WA"
+        ],
+        "name": "State Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Rainfall > Rainfall_Above"},
+    {
+      "filter": "State_selection == null || datum.State == State_selection"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "Humidity9am",
+      "type": "quantitative",
+      "title": "Humidity (%)"
+    },
+    "x": {
+      "field": "Temp9am",
+      "type": "quantitative",
+      "title": "Temperature (°C)"
+    }
+  },
+  "layer": [
+    {
+      "selection": {
+        "state_highlight": {
+          "type": "multi",
+          "fields": ["State"],
+          "bind": "legend"
+        }
+      },
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Rainfall",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1, 2, 3, 4, 10]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ACT",
+              "NSW",
+              "NT",
+              "QLD",
+              "SA",
+              "TAS",
+              "VIC",
+              "WA"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "state_highlight", "value": 0.6},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal"},
+          {"field": "Temp9am", "title": "Temp (°C)", "type": "quantitative", "format": ","},
+          {"field": "Humidity9am", "title": "Humidity (%)", "type": "quantitative", "format": ","},
+          {"field": "Rainfall", "title": "Rainfall (mm)", "type": "quantitative", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "legend": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "header": {
+      "labelFont": "Oxygen",
+      "titleFont": "Oxygen"
+    },
+    "title": {
+      "font": "Oxygen",
+      "fontSize": 16,
+      "fontWeight": 600
+    }
+  }
+}
