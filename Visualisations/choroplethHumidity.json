@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "title": "Distribution of Humidity across Australia",
-  "width": 800,
-  "height": 600,
+  "width": "container",
+  "height": 250,
   "data": {
     "url": "https://raw.githubusercontent.com/rukshan-ameratunga/FIT3179/main/js/ne_10m_admin_1_states_provinces.json",
     "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
