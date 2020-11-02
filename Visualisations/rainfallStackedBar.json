@@ -32,7 +32,8 @@
     "y": {
       "field": "Rainfall",
       "type": "quantitative",
-      "title": "Rainfall (mm)"
+      "title": "Rainfall (mm)",
+      "scale": {"domain": [0, 55]}
     },
         "color": {
             "condition": {
