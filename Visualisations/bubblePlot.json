@@ -57,12 +57,14 @@
     "y": {
       "field": "Humidity9am",
       "type": "quantitative",
-      "title": "Humidity (%)"
+      "title": "Humidity (%)",
+      "scale": {"domain": [0, 100]}
     },
     "x": {
       "field": "Temp9am",
       "type": "quantitative",
-      "title": "Temperature (°C)"
+      "title": "Temperature (°C)",
+      "scale": {"domain": [0, 35]}
     }
   },
   "layer": [
