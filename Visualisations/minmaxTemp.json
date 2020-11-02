@@ -63,7 +63,8 @@
                 "y": {
                 "field": "MaxTemp",
                 "type": "quantitative",
-                "title": "Temperature (°C)"
+                "title": "Temperature (°C)",
+                "scale": {"domain": [0, 40]}
                 },
                 "x": {
                 "field": "Month",
