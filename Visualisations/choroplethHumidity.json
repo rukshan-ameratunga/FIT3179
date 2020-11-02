@@ -91,7 +91,7 @@
     },
     "tooltip": [
       {"field": "properties.name", "type": "nominal", "title": "State"},
-      {"field": "Humidity9am", "type": "quantitative"}
+      {"field": "Humidity9am", "type": "quantitative", "title": "Humidity (%)"}
     ]
   },
   "config": {
